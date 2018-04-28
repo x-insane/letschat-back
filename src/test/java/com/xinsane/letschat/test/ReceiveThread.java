@@ -1,6 +1,7 @@
 package com.xinsane.letschat.test;
 
 import com.xinsane.letschat.protocol.MessageType;
+import com.xinsane.letschat.util.DataIOUtil;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -20,25 +21,18 @@ public class ReceiveThread extends Thread {
             try {
                 byte type = in.readByte();
                 switch (type) {
+                    case MessageType.LOGIN: {
+                        System.out.println("LOGIN|" + DataIOUtil.receiveString(in));
+                        break;
+                    }
                     case MessageType.TEXT: {
-                        System.out.print("TEXT|");
-                        int size = in.readInt();
-                        System.out.print("[" + size + "]");
-                        byte[] bin = new byte[size];
-                        if (size != in.read(bin))
-                            System.err.print("[wrong size]");
-                        System.out.println(new String(bin));
+                        System.out.println("TEXT|" + DataIOUtil.receiveString(in) + "|" + DataIOUtil.receiveString(in));
                         break;
                     }
                     case MessageType.FILE_ID: {
-                        System.out.print("FILE_ID|");
-                        int size = in.readInt();
-                        System.out.print("[" + size + "]");
-                        byte[] bin = new byte[size];
-                        if (size != in.read(bin))
-                            System.err.print("[wrong size]");
-                        String token = new String(bin);
-                        System.out.println("token=" + token);
+                        System.out.print("FILE_ID|" + DataIOUtil.receiveString(in) + "|");
+                        String token = DataIOUtil.receiveString(in);
+                        System.out.println(token);
                         new FileDownloadThread(token).start();
                         break;
                     }

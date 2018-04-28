@@ -1,6 +1,7 @@
 package com.xinsane.letschat.test;
 
 import com.xinsane.letschat.protocol.MessageType;
+import com.xinsane.letschat.util.DataIOUtil;
 
 import java.io.*;
 import java.net.Socket;
@@ -17,13 +18,9 @@ public class TextClient {
             String str = input.readLine();
             if (str.equals("exit"))
                 break;
-            System.out.println("sending...size=" + str.length() + ", str=" + str);
             out.writeByte(MessageType.TEXT);
-            byte[] data = str.getBytes();
-            out.writeInt(data.length);
-            out.write(data);
+            DataIOUtil.sendString(out, str);
             out.flush();
-            System.out.println("send complete");
         }
         input.close();
         socket.close();

@@ -1,16 +1,20 @@
 package com.xinsane.letschat.server;
 
+import com.xinsane.letschat.Config;
 import com.xinsane.letschat.protocol.MessageType;
 import com.xinsane.letschat.service.FileService;
+import com.xinsane.letschat.util.DataIOUtil;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.UUID;
 
 public class IOThread extends Thread {
 
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
     private Socket socket;
+    private String user = "未知用户";
 
     IOThread(Socket socket) {
         try {
@@ -22,25 +26,46 @@ public class IOThread extends Thread {
         }
     }
 
+    private void exit() {
+        try {
+            ServerThread.getServerThread().remove(socket);
+            if (!socket.isClosed())
+                socket.close();
+        } catch (IOException e) {
+            System.err.println("can not close socket");
+        }
+    }
+
     @Override
     public void run() {
         root: while (true) {
             try {
                 byte type = inputStream.readByte();
                 switch (type) {
+                    case MessageType.LOGIN: {
+                        user = DataIOUtil.receiveString(inputStream);
+                        System.out.println("LOGIN|" + user);
+                        ServerThread.getServerThread().eachSocket((socket, io) -> {
+                            try {
+                                io.outputStream.writeByte(MessageType.LOGIN);
+                                DataIOUtil.sendString(io.outputStream, user);
+                                io.outputStream.flush();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                return false;
+                            }
+                            return true;
+                        }, socket);
+                        break;
+                    }
                     case MessageType.TEXT: {
-                        int size = inputStream.readInt(), realSize;
-                        byte[] data = new byte[size];
-                        realSize = inputStream.read(data);
-                        if (size != realSize)
-                            System.err.println("receive wrong message size: " + realSize + ", expect " + size);
-                        String text = new String(data);
-                        System.out.println("receive text: " + text);
+                        String text = DataIOUtil.receiveString(inputStream);
+                        System.out.println("TEXT|" + text);
                         ServerThread.getServerThread().eachSocket((socket, io) -> {
                             try {
                                 io.outputStream.writeByte(MessageType.TEXT);
-                                io.outputStream.writeInt(realSize);
-                                io.outputStream.write(data);
+                                DataIOUtil.sendString(io.outputStream, user);
+                                DataIOUtil.sendString(io.outputStream, text);
                                 io.outputStream.flush();
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -51,104 +76,65 @@ public class IOThread extends Thread {
                         break;
                     }
                     case MessageType.FILE: {
-                        boolean error = false;
-                        int filenameSize = inputStream.readInt();
-                        byte[] filenameBytes = new byte[filenameSize];
-                        int realSize = inputStream.read(filenameBytes);
-                        if (filenameSize != realSize) {
-                            System.err.println("receive wrong filename size: " + realSize + ", expect " + filenameSize);
-                            error = true;
-                        }
-                        String filename = new String(filenameBytes);
-                        File file = new File(filename);
-                        if (file.exists())
-                            System.err.println("file already exists, will be overwritten");
-                        int size = inputStream.readInt(), total = 0;
-                        System.out.println("start receive file " + filename + ", size=" + size);
-                        FileOutputStream outputStream = new FileOutputStream(file);
-                        byte[] buffer = new byte[1024];
-                        while (true) {
-                            realSize = inputStream.read(buffer);
-                            if (realSize <= 0)
-                                break;
-                            outputStream.write(buffer, 0, realSize);
-                            total += realSize;
-                            if (total == size)
-                                break;
-                        }
-                        if (total != size) {
-                            System.err.println("receive wrong file size: " + total + ", expect " + size);
-                            error = true;
-                        }
-                        outputStream.flush();
-                        outputStream.close();
-                        System.out.println("receive ending.");
-                        if (!error) {
-                            String token = FileService.generateFileToken(file.getAbsolutePath());
-                            System.out.println("generate a file token: " + token);
-                            byte[] bytes = token.getBytes();
-                            ServerThread.getServerThread().eachSocket((socket, io) -> {
-                                try {
-                                    io.outputStream.writeByte(MessageType.FILE_ID);
-                                    io.outputStream.writeInt(bytes.length);
-                                    io.outputStream.write(bytes);
-                                    io.outputStream.flush();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                    return false;
-                                }
-                                return true;
-                            }, socket);
-                        }
+                        // 接收文件后缀
+                        String ext = DataIOUtil.receiveString(inputStream);
+                        System.out.print("FILE|" + ext + "|");
+                        if (!ext.equals("jpg"))
+                            exit();
+
+                        // 创建文件
+                        File file = new File(Config.filePath +
+                                UUID.randomUUID().toString().replace("-", "") + "." + ext);
+                        System.out.println(file.getName());
+
+                        // 写入文件
+                        FileOutputStream fileOutputStream = new FileOutputStream(file);
+                        DataIOUtil.receiveFile(inputStream, fileOutputStream);
+                        fileOutputStream.close();
+
+                        // 获取并发送token
+                        String token = FileService.generateFileToken(file.getAbsolutePath(), ext);
+                        System.out.println("generate a file token: " + token);
+                        ServerThread.getServerThread().eachSocket((socket, io) -> {
+                            try {
+                                io.outputStream.writeByte(MessageType.FILE_ID);
+                                DataIOUtil.sendString(io.outputStream, user);
+                                DataIOUtil.sendString(io.outputStream, token);
+                                io.outputStream.flush();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                return false;
+                            }
+                            return true;
+                        }, socket);
                         break;
                     }
                     case MessageType.FILE_ID: {
-                        int tokenSize = inputStream.readInt();
-                        byte[] tokenBytes = new byte[tokenSize];
-                        int realTokenSize = inputStream.read(tokenBytes);
-                        if (realTokenSize != tokenSize)
-                            System.err.println("wrong token size: " + realTokenSize + ", expect " + tokenSize);
-                        String token = new String(tokenBytes);
-                        String filePath = FileService.getFilePathByToken(token);
-                        File file = new File(filePath);
+                        // 接收token
+                        String token = DataIOUtil.receiveString(inputStream);
+
+                        // 获取文件信息
+                        FileService.FileInfo fileInfo = FileService.getFileInfoByToken(token);
+                        File file = new File(fileInfo.filepath);
                         if (!file.exists())
                             System.err.println("file not found.");
 
+                        // 接收文件
                         FileInputStream fileInputStream = new FileInputStream(file);
-                        int size = fileInputStream.available();
                         outputStream.writeByte(MessageType.FILE);
-
-                        byte[] filenameBytes = file.getName().getBytes();
-                        int filenameSize = filenameBytes.length;
-                        outputStream.writeInt(filenameSize);
-                        outputStream.write(filenameBytes);
-
-                        outputStream.writeInt(size);
-                        byte[] buffer = new byte[1024];
-                        int realSize, total = 0;
-                        System.out.println("start sending file " + file.getName() + "...");
-                        while (true) {
-                            realSize = fileInputStream.read(buffer);
-                            if (realSize <= 0)
-                                break;
-                            outputStream.write(buffer, 0, realSize);
-                            total += realSize;
-                        }
-                        if (total != size)
-                            System.err.println("transfer wrong! " + total + " bytes has been transferred, expect " + size);
-                        outputStream.flush();
-                        System.out.println("end sending.");
+                        DataIOUtil.sendString(outputStream, fileInfo.ext);
+                        DataIOUtil.sendFile(outputStream, fileInputStream);
                         fileInputStream.close();
                     }
                     case MessageType.EXIT:
-                        ServerThread.getServerThread().remove(socket);
+                        exit();
                         break root;
                     default:
                         System.err.println("receive wrong message type.");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                ServerThread.getServerThread().remove(socket);
+                exit();
             }
         }
     }

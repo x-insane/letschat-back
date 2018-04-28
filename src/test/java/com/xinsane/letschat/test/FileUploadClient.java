@@ -1,6 +1,7 @@
 package com.xinsane.letschat.test;
 
 import com.xinsane.letschat.protocol.MessageType;
+import com.xinsane.letschat.util.DataIOUtil;
 
 import java.io.*;
 import java.net.Socket;
@@ -22,6 +23,8 @@ public class FileUploadClient {
                 System.err.println("file not exists.");
                 continue;
             }
+
+            // 打开并发送文件
             FileInputStream fileInputStream = new FileInputStream(file);
             int size = fileInputStream.available();
             if (file.length() > size) {
@@ -29,31 +32,22 @@ public class FileUploadClient {
                 fileInputStream.close();
                 continue;
             }
-            System.out.println("file size: " + size);
+            System.out.println("send file " + file.getName() + ", size: " + size);
             out.writeByte(MessageType.FILE);
 
-            byte[] filenameBytes = file.getName().getBytes();
-            int filenameSize = filenameBytes.length;
-            out.writeInt(filenameSize);
-            out.write(filenameBytes);
-            System.out.println("send filename ok.");
+            // 发送文件后缀
+            int dotIndex = filename.lastIndexOf(".");
+            if (dotIndex == -1)
+                DataIOUtil.sendString(out, "");
+            else
+                DataIOUtil.sendString(out, filename.substring(dotIndex + 1));
 
-            out.writeInt(size);
-            byte[] buffer = new byte[1024];
-            int realSize, total = 0;
-            System.out.println("start sending...");
-            while (true) {
-                realSize = fileInputStream.read(buffer);
-                if (realSize <= 0)
-                    break;
-                out.write(buffer, 0, realSize);
-                total += realSize;
-            }
-            if (total != size)
-                System.err.println("transfer wrong! " + total + " bytes has been transferred, expect " + size);
+            // 发送文件
+            DataIOUtil.sendFile(out, fileInputStream);
+
+            // 结束发送
             out.flush();
             fileInputStream.close();
-            System.out.println("end sending.");
         }
         input.close();
         socket.close();
