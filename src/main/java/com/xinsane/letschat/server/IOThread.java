@@ -14,7 +14,7 @@ public class IOThread extends Thread {
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
     private Socket socket;
-    private String user = "未知用户";
+    private String user = "";
 
     IOThread(Socket socket) {
         try {
@@ -60,11 +60,11 @@ public class IOThread extends Thread {
                     }
                     case MessageType.TEXT: {
                         String text = DataIOUtil.receiveString(inputStream);
-                        System.out.println("TEXT|" + text);
+                        System.out.println("TEXT|" + user + "|" + text);
                         ServerThread.getServerThread().eachSocket((socket, io) -> {
                             try {
                                 io.outputStream.writeByte(MessageType.TEXT);
-                                DataIOUtil.sendString(io.outputStream, user);
+                                DataIOUtil.sendString(io.outputStream, user.isEmpty() ? "匿名用户" : user);
                                 DataIOUtil.sendString(io.outputStream, text);
                                 io.outputStream.flush();
                             } catch (IOException e) {
@@ -78,7 +78,7 @@ public class IOThread extends Thread {
                     case MessageType.FILE: {
                         // 接收文件后缀
                         String ext = DataIOUtil.receiveString(inputStream);
-                        System.out.print("FILE|" + ext + "|");
+                        System.out.print("FILE|" + user + "|" + ext + "|");
                         if (!ext.equals("jpg"))
                             exit();
 
@@ -98,7 +98,7 @@ public class IOThread extends Thread {
                         ServerThread.getServerThread().eachSocket((socket, io) -> {
                             try {
                                 io.outputStream.writeByte(MessageType.FILE_ID);
-                                DataIOUtil.sendString(io.outputStream, user);
+                                DataIOUtil.sendString(io.outputStream, user.isEmpty() ? "匿名用户" : user);
                                 DataIOUtil.sendString(io.outputStream, token);
                                 io.outputStream.flush();
                             } catch (IOException e) {
@@ -127,16 +127,39 @@ public class IOThread extends Thread {
                         fileInputStream.close();
                     }
                     case MessageType.EXIT:
+                        if (user!= null && !user.isEmpty()) {
+                            System.out.println("EXIT|" + user);
+                            sendExit();
+                        }
                         exit();
                         break root;
                     default:
                         System.err.println("receive wrong message type.");
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                if (e instanceof EOFException && !user.isEmpty()) {
+                    System.out.println("EXIT|" + user);
+                    sendExit();
+                }
+                else
+                    e.printStackTrace();
                 exit();
+                break;
             }
         }
     }
 
+    private void sendExit() {
+        ServerThread.getServerThread().eachSocket((socket, io) -> {
+            try {
+                io.outputStream.writeByte(MessageType.EXIT);
+                DataIOUtil.sendString(io.outputStream, user.isEmpty() ? "某匿名用户" : user);
+                io.outputStream.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+            return true;
+        }, socket);
+    }
 }

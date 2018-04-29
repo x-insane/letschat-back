@@ -4,7 +4,7 @@ import java.io.*;
 
 public class DataIOUtil {
     public static void sendString(DataOutputStream outputStream, String value) throws IOException {
-        byte[] bytes = value.getBytes();
+        byte[] bytes = value.getBytes("UTF-8");
         outputStream.writeInt(bytes.length);
         outputStream.write(bytes);
     }

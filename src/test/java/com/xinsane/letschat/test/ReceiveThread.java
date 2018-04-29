@@ -36,6 +36,10 @@ public class ReceiveThread extends Thread {
                         new FileDownloadThread(token).start();
                         break;
                     }
+                    case MessageType.EXIT: {
+                        System.out.print("EXIT|" + DataIOUtil.receiveString(in));
+                        break;
+                    }
                     default:
                         System.err.println("receive wrong message type: " + type);
                 }

@@ -14,6 +14,8 @@ public class FileUploadClient {
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
         DataInputStream in = new DataInputStream(socket.getInputStream());
         new ReceiveThread(in).start();
+        out.writeByte(MessageType.LOGIN);
+        DataIOUtil.sendString(out, "匿名用户");
         while (true) {
             String filename = input.readLine();
             if (filename.equals("exit"))
