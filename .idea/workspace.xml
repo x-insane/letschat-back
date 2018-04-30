@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="54b8bb1e-fed1-4fd6-969f-90392c3bef7c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/util/DataIOUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/util/DataIOUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/FileUploadClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/FileUploadClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/ReceiveThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/ReceiveThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -61,14 +60,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="IOThread.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="141" column="31" lean-forward="true" selection-start-line="141" selection-start-column="31" selection-end-line="141" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="100">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -96,7 +92,7 @@
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
       <map>
-        <entry key="$PROJECT_DIR$" value="C:\Users\yanxu\.gradle\wrapper\dists\gradle-4.4-bin\bgaq7vklkazwgxox0hdadxbvi\gradle-4.4" />
+        <entry key="$PROJECT_DIR$" value="C:\Users\yanxu\.gradle\wrapper\dists\gradle-4.4-all\9br9xq1tocpiv8o6njlyu5op1\gradle-4.4" />
       </map>
     </option>
     <option name="myGradleVersions">
@@ -272,9 +268,9 @@
     <option name="modificationStamps">
       <map>
         <entry key="$USER_HOME$/.gradle/gradle.properties" value="4056610230" />
-        <entry key="$PROJECT_DIR$" value="7621382377236" />
+        <entry key="$PROJECT_DIR$" value="7621711841004" />
         <entry key="$PROJECT_DIR$/.gradle" value="0" />
-        <entry key="$PROJECT_DIR$/build.gradle" value="3863277285" />
+        <entry key="$PROJECT_DIR$/build.gradle" value="3417657406" />
         <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="2083459160" />
         <entry key="$PROJECT_DIR$/settings.gradle" value="1994850788" />
       </map>
@@ -459,7 +455,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/ClientModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/protocol/msg/client/Play.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/protocol/ClientMessageType.java" />
@@ -467,11 +462,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/protocol/MessageInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/protocol/MessageHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/handler/StringHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/SingleClient.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/FileClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/ServerThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Config.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/service/FileService.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/TextClient.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/FileDownloadThread.java" />
@@ -480,6 +473,9 @@
         <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/FileUploadClient.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/ReceiveThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Config.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java" />
       </list>
     </option>
   </component>
@@ -501,6 +497,8 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -595,8 +593,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -624,7 +620,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Gradle.LetsChat [jar]">
     <configuration name="FileUploadClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.xinsane.letschat.test.FileUploadClient" />
       <module name="letschat.server_test" />
@@ -660,6 +656,40 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="LetsChat [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+    </configuration>
+    <configuration name="LetsChat [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -703,9 +733,13 @@
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.TextClient" />
       <item itemvalue="Application.FileUploadClient" />
+      <item itemvalue="Gradle.LetsChat [jar]" />
+      <item itemvalue="Gradle.LetsChat [build]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.LetsChat [build]" />
+        <item itemvalue="Gradle.LetsChat [jar]" />
         <item itemvalue="Application.Server" />
         <item itemvalue="Application.TextClient" />
         <item itemvalue="Application.FileUploadClient" />
@@ -728,11 +762,12 @@
       <workItem from="1524928468991" duration="5020000" />
       <workItem from="1524974944970" duration="5301000" />
       <workItem from="1525018693860" duration="8019000" />
+      <workItem from="1525071427491" duration="1526000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58467000" />
+    <option name="totallyTimeSpent" value="59993000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -760,7 +795,8 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22121535" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22334754" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.32827735" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.2249467" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -771,7 +807,6 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39935064" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.32900432" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -799,6 +834,16 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3525">
+          <caret line="141" column="31" lean-forward="true" selection-start-line="141" selection-start-column="31" selection-end-line="141" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3200">
@@ -846,13 +891,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/old/server/ServerThread.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/old/server/handler/StringHandler.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/old/server/IOThread.java" />
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/protocol/msg/client/Play.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/protocol/Player.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/protocol/GameStatus.java" />
@@ -1007,24 +1045,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/TextClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -1071,11 +1095,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="141" column="31" lean-forward="true" selection-start-line="141" selection-start-column="31" selection-end-line="141" selection-end-column="31" />
+        <state relative-caret-position="3525">
+          <caret line="141" column="31" selection-start-line="141" selection-start-column="31" selection-end-line="141" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
