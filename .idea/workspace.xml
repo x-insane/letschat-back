@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54b8bb1e-fed1-4fd6-969f-90392c3bef7c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/service/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/ReceiveThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/ReceiveThread.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -60,11 +59,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="125">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IOThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="78" column="33" lean-forward="true" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReceiveThread.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/ReceiveThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="344">
+              <caret line="35" column="55" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -465,17 +488,17 @@
         <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/SingleClient.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/FileClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/ServerThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/service/FileService.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/TextClient.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/FileDownloadThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/protocol/MessageType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/util/DataIOUtil.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/FileUploadClient.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/ReceiveThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Config.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/service/FileService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/ReceiveThread.java" />
       </list>
     </option>
   </component>
@@ -496,9 +519,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -593,6 +615,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -738,9 +761,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Server" />
         <item itemvalue="Gradle.LetsChat [build]" />
         <item itemvalue="Gradle.LetsChat [jar]" />
-        <item itemvalue="Application.Server" />
         <item itemvalue="Application.TextClient" />
         <item itemvalue="Application.FileUploadClient" />
       </list>
@@ -763,11 +786,12 @@
       <workItem from="1524974944970" duration="5301000" />
       <workItem from="1525018693860" duration="8019000" />
       <workItem from="1525071427491" duration="1526000" />
+      <workItem from="1526135937183" duration="2372000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59993000" />
+    <option name="totallyTimeSpent" value="62365000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -780,6 +804,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32900432" />
@@ -795,8 +820,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22334754" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.32827735" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22547974" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.2249467" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -807,6 +831,7 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39935064" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.32827735" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -834,6 +859,13 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3525">
@@ -1022,16 +1054,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/service/FileService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="12" column="52" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="523">
@@ -1083,26 +1105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/ReceiveThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="46" column="40" lean-forward="true" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3525">
-          <caret line="141" column="31" selection-start-line="141" selection-start-column="31" selection-end-line="141" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -1117,10 +1119,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/service/FileService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="125">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xinsane/letschat/server/IOThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="78" column="33" lean-forward="true" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/xinsane/letschat/test/ReceiveThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="35" column="55" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

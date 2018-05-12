@@ -22,7 +22,7 @@ public class FileService {
         public String filepath;
         public String ext;
 
-        public FileInfo(String filepath, String ext) {
+        FileInfo(String filepath, String ext) {
             this.filepath = filepath;
             this.ext = ext;
         }

@@ -79,7 +79,7 @@ public class IOThread extends Thread {
                         // 接收文件后缀
                         String ext = DataIOUtil.receiveString(inputStream);
                         System.out.print("FILE|" + user + "|" + ext + "|");
-                        if (!ext.equals("jpg"))
+                        if (!ext.equals("jpg") && !ext.equals("amr"))
                             exit();
 
                         // 创建文件
@@ -98,6 +98,7 @@ public class IOThread extends Thread {
                         ServerThread.getServerThread().eachSocket((socket, io) -> {
                             try {
                                 io.outputStream.writeByte(MessageType.FILE_ID);
+                                DataIOUtil.sendString(io.outputStream, ext); // 发送文件后缀
                                 DataIOUtil.sendString(io.outputStream, user.isEmpty() ? "匿名用户" : user);
                                 DataIOUtil.sendString(io.outputStream, token);
                                 io.outputStream.flush();
@@ -119,7 +120,7 @@ public class IOThread extends Thread {
                         if (!file.exists())
                             System.err.println("file not found.");
 
-                        // 接收文件
+                        // 发送文件
                         FileInputStream fileInputStream = new FileInputStream(file);
                         outputStream.writeByte(MessageType.FILE);
                         DataIOUtil.sendString(outputStream, fileInfo.ext);

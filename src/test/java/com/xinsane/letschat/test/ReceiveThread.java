@@ -31,8 +31,9 @@ public class ReceiveThread extends Thread {
                     }
                     case MessageType.FILE_ID: {
                         System.out.print("FILE_ID|" + DataIOUtil.receiveString(in) + "|");
+                        String ext = DataIOUtil.receiveString(in);
                         String token = DataIOUtil.receiveString(in);
-                        System.out.println(token);
+                        System.out.println(ext + "|" + token);
                         new FileDownloadThread(token).start();
                         break;
                     }
